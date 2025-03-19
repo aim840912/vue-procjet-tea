@@ -7,14 +7,18 @@ const routes: RouteRecordRaw[] = [
         path: "/",
         name: "Home",
         component: () => import("@/layouts/DefaultLayout.vue"),
-        // redirect: "/dashboard",
+        redirect: "/dashboard",
         children: [
             {
                 path: "/dashboard",
                 name: "dashboard",
                 component: () => import("@/views/DashBoard.vue")
-            },
-        ]
+            }, {
+                path: "/personal",
+                name: "Personal",
+                component: () => import("@/views/Personal.vue"),
+
+            }]
     },
     {
         path: "/login",
