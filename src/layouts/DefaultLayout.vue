@@ -1,7 +1,7 @@
 <template>
 	<el-container>
 		<el-aside width="200px">
-			<!-- <Menu></Menu>  -->
+			<Menu></Menu>
 		</el-aside>
 		<el-container>
 			<el-header><TopHeader /> </el-header>
@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-// import Menu from "@/components/navMenu/Menu.vue";
+import Menu from "@/components/Menu.vue";
 import TopHeader from "@/components/TopHeader.vue";
 import TabsLayout from "@/layouts/TabsLayout.vue";
 </script>

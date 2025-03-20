@@ -27,6 +27,12 @@ export const useUserStore = defineStore('user', {
             } catch (error) {
                 console.log("登入失敗", error)
             }
+        },
+        logout() {
+            this.token = ""
+            this.roles = [];
+            this.username = ""
+            sessionStorage.clear()
         }
     }
 })
