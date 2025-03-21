@@ -1,5 +1,5 @@
 <template>
-	<div>註冊</div>
+	<div>聯絡專區</div>
 </template>
 
 <script setup lang="ts"></script>

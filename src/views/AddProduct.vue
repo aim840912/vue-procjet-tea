@@ -1,5 +1,5 @@
 <template>
-	<div>註冊</div>
+	<div>增加產品</div>
 </template>
 
 <script setup lang="ts"></script>

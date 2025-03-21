@@ -1,5 +1,5 @@
 <template>
-	<div></div>
+	<div>個人專區</div>
 </template>
 
 <script setup lang="ts"></script>
