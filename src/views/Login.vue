@@ -17,12 +17,22 @@
 					></el-input>
 				</el-form-item>
 				<el-form-item>
+					<el-button class="btn" type="primary" @click="handleLogin"
+						>Login</el-button
+					>
+					<br />
 					<el-button
 						class="btn"
 						type="primary"
-						size="default"
-						@click="handleLogin"
-						>Login</el-button
+						@click="handleCustomLogin"
+						>遊客模式</el-button
+					>
+					<br />
+					<el-button
+						class="btn"
+						type="primary"
+						@click="handleCustomLogin"
+						>註冊</el-button
 					>
 				</el-form-item>
 			</el-form>
@@ -67,6 +77,11 @@ const handleLogin = () => {
 		}
 	});
 };
+
+const handleCustomLogin = async () => {
+	await userStore.login({ username: "custome", password: "custome666" });
+	router.push("/");
+};
 </script>
 
 <style scoped lang="less">
@@ -83,6 +98,7 @@ const handleLogin = () => {
 		left: 10%;
 		.btn {
 			width: 100%;
+			margin-top: 5px;
 		}
 	}
 }

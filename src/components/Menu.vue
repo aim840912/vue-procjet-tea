@@ -14,7 +14,7 @@
 				<span>首頁</span>
 			</template>
 		</el-menu-item>
-		<el-sub-menu>
+		<el-sub-menu index="/shop">
 			<template #title>
 				<el-icon><document /></el-icon>
 				<span>商品專區</span>
@@ -32,11 +32,31 @@
 				<el-menu-item index="2-3-2">咖啡豆</el-menu-item>
 			</el-sub-menu>
 		</el-sub-menu>
-		<el-menu-item index="3" disabled>
+		<el-sub-menu index="/appearmap">
+			<template #title>
+				<el-icon><document /></el-icon>
+				<span>出現地點</span>
+			</template>
+			<el-menu-item index="/appearmap">全部地點</el-menu-item>
+			<el-menu-item index="3-1">定點</el-menu-item>
+			<el-sub-menu index="3-2">
+				<template #title>擺攤</template>
+				<el-menu-item index="3-2-1">嘉義</el-menu-item>
+				<el-menu-item index="3-2-2">台南</el-menu-item>
+			</el-sub-menu>
+		</el-sub-menu>
+
+		<el-menu-item index="/contact">
 			<el-icon>
 				<document />
 			</el-icon>
 			<span>聯絡專區</span>
+		</el-menu-item>
+		<el-menu-item index="/add">
+			<el-icon>
+				<document />
+			</el-icon>
+			<span>新增產品</span>
 		</el-menu-item>
 		<el-menu-item index="/personal">
 			<el-icon>

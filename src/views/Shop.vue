@@ -26,6 +26,11 @@
 		<el-row :gutter="20">
 			<el-col :span="6" v-for="item in options" :key="item">
 				<div class="item">
+					<el-image
+						style="width: 100px; height: 100px"
+						:src="fruit"
+						fit="cover"
+					/>
 					<div class="info">
 						<h3>{{ item.label }}</h3>
 						<hr class="mb" />
@@ -34,10 +39,19 @@
 						<p>content3</p>
 						<p>content4</p>
 					</div>
-					<div class="btn">
-						<div class="divder">
-							<el-button size="small" @click="">查看</el-button>
-							<el-button size="small" @click="">添加</el-button>
+				</div>
+				<div class="btn">
+					<div class="divder">
+						<div>
+							<p class="fl ml"></p>
+							<div>
+								<el-button size="small" @click=""
+									>查看</el-button
+								>
+								<el-button size="small" @click=""
+									>添加</el-button
+								>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -48,6 +62,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import fruit from "@/assets/picture/fruit.jpg";
 
 const value = ref<string>("");
 const options = ref<any>([

@@ -20,7 +20,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
 
             }
         }
-    } else if (username === "user" && password === "user666") {
+    } else if (username === "custome" && password === "custome666") {
         return {
             code: 200,
             message: "登入成功",

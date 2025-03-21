@@ -32,21 +32,21 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-// import { useUserStore } from "@/store/auth";
+import { useUserStore } from "@/store/auth";
 // import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const router = useRouter();
-// const userStore = useUserStore();
+const userStore = useUserStore();
 // const { username } = storeToRefs(userStore);
 const info = ref(5);
 
 const handleCommand = (command: string) => {
-	// if (command == "user") {
-	// 	router.push("/personal");
-	// } else {
-	// 	userStore.logout();
-	// 	router.push("/login");
-	// }
+	if (command == "user") {
+		router.push("/personal");
+	} else {
+		userStore.logout();
+		router.push("/login");
+	}
 };
 </script>
 
