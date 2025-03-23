@@ -1,7 +1,7 @@
 import Mock from "mockjs"
 
 Mock.setup({
-    timeout: "200-600" //设置延迟时间
+    timeout: "200-600" //設置延遲時間
 })
 
 Mock.mock("https://www.demo.com/login", "post", (options: any) => {
@@ -39,4 +39,24 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
             message: "帳號或密碼有錯誤"
         }
     }
+})
+
+// 新增產品
+Mock.mock("https://www.demo.com/product/edit", 'post', (options: any) => {
+    const res: any = JSON.parse(options.body);
+    console.log("新增/編輯接口收到數據：", res)
+    return {
+        code: 200,
+        success: true,
+        data: "操作成功",
+    };
+});
+
+Mock.mock("https://www.demo.com/product/delete", "post", (options: any) => {
+    console.log("刪除接口收到參數", JSON.parse(options.body))
+    return {
+        code: 200,
+        success: true,
+        data: "操作成功",
+    };
 })
