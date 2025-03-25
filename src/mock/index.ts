@@ -60,3 +60,70 @@ Mock.mock("https://www.demo.com/product/delete", "post", (options: any) => {
         data: "操作成功",
     };
 })
+const productList = [
+    {
+        label: "茶類",
+        children: [
+            {
+                label: "綠茶",
+                children: [
+                    { label: "茶包" },
+                    { label: "茶葉" },
+                    { label: "禮盒" },
+                ]
+            },
+            {
+                label: "紅茶",
+                children: [
+                    { label: "茶包" },
+                    { label: "茶葉" },
+                    { label: "禮盒" },
+                ]
+            }
+
+        ]
+    },
+    {
+        label: "咖啡類",
+        children: [
+            {
+                label: "重",
+                children: [
+                    { label: "咖啡豆" },
+                    { label: "咖啡包" },
+                ]
+            }, {
+                label: "輕",
+                children: [
+                    { label: "咖啡豆" },
+                    { label: "咖啡包" },
+                ]
+            }
+        ]
+    },
+    {
+        label: "果園",
+        children: [
+            {
+                label: "觀光",
+                children: [
+                    { label: "紅肉李" }
+                ]
+            }, {
+                label: "購買",
+                children: [
+                    { label: "紅肉李" }
+                ]
+            }
+        ]
+    }
+]
+
+
+Mock.mock('https://www.demo.com/productList', "get", () => {
+    return {
+        code: 200,
+        message: "操作成功",
+        data: productList
+    }
+})

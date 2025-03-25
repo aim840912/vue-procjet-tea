@@ -1,70 +1,68 @@
 <template>
-	<el-col :span="12">
+	<el-col :span="24">
 		<el-card>
 			<template #header>
 				<div class="card-header">
-					<span>完善個人資料</span>
+					<span>產品資料</span>
 				</div>
 			</template>
 			<el-row :gutter="20">
 				<el-col :span="16">
-					<StepForm
-						:steps="steps"
-						:form1="form1"
-						:form2="form2"
-						@handle-submit="handleSubmit"
-					>
-						<template #step-1>
-							<el-form :model="formData.basicInfo" ref="form1">
-								<el-form-item label="姓名">
-									<el-input
-										v-model="formData.basicInfo.name"
-									/>
-								</el-form-item>
-								<el-form-item label="電話">
-									<el-input
-										v-model="formData.basicInfo.tel"
-									/>
-								</el-form-item>
-								<el-form-item label="地址">
-									<el-input
-										v-model="formData.basicInfo.address"
-									/>
-								</el-form-item>
-							</el-form>
-						</template>
-						<template #step-2>
-							<el-form :model="formData.job" ref="form2">
-								<el-select
-									placeholder="選擇聯絡方式"
-									v-model="formData.job.status"
-								>
-									<el-option label="手機" value="1">
-									</el-option>
-									<el-option label="郵件" value="2">
-									</el-option>
-									<el-option label="家用電話" value="3">
-									</el-option>
-									<el-option label="簡訊" value="4">
-									</el-option>
-								</el-select>
-							</el-form>
-						</template>
-					</StepForm>
+					<el-form @handle-submit="handleSubmit">
+						<el-form :model="formData.basicInfo" ref="form1">
+							<el-form-item label="產品名稱">
+								<el-input v-model="formData.basicInfo.name" />
+							</el-form-item>
+							<el-form-item label="價格">
+								<el-input v-model="formData.basicInfo.price" />
+							</el-form-item>
+							<el-form-item label="數量">
+								<el-input v-model="formData.basicInfo.count" />
+							</el-form-item>
+						</el-form>
+						<el-form :model="formData.category" ref="form2">
+							<el-select
+								placeholder="選擇分類"
+								v-model="formData.category.status"
+							>
+								<el-option label="茶類" value="茶類">
+								</el-option>
+								<el-option label="咖啡類" value="咖啡類">
+								</el-option>
+								<el-option label="水果類" value="水果類">
+								</el-option>
+								<el-option label="觀光" value="觀光">
+								</el-option>
+							</el-select>
+						</el-form>
+					</el-form>
 				</el-col>
 				<el-col :span="8">
-					<div
-						style="
-							display: flex;
-							align-items: center;
-							flex-direction: column;
-							justify-content: space-around;
-						"
-					>
-						<h1 style="margin-bottom: 40px" class="mt">
-							資料完善度
-						</h1>
-						<el-progress type="circle" :percentage="85" />
+					<div class="d-flex justify-center pa-3">
+						<img
+							v-if="imageUrl"
+							:src="imageUrl"
+							alt="Uploaded Image"
+						/>
+						<input
+							type="file"
+							@change="uploadImage"
+							accept="image/*"
+						/>
+					</div>
+					<div class="d-flex justify-center pa-3">
+						<img
+							style="height: 10vh"
+							v-for="(item, index) in imageUrlList"
+							:key="index"
+							:src="item"
+						/>
+						<input
+							type="file"
+							@change="uploadImageList"
+							accept="image/*"
+							multiple
+						/>
 					</div>
 				</el-col>
 			</el-row>
@@ -75,23 +73,43 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { type FormInstance } from "element-plus";
-import StepForm from "@/views/StepForm.vue";
 
-const steps = [{ title: "基本信息" }, { title: "在職信息" }];
 const form1 = ref<FormInstance>();
 const form2 = ref<FormInstance>();
 const formData = ref({
 	basicInfo: {
 		name: "",
-		address: "",
-		tel: "",
+		price: "",
+		count: "",
 	},
-	job: {
+	category: {
 		status: "",
 	},
 });
 const handleSubmit = () => {
 	console.log("表單數據", formData.value);
+};
+
+const imageUrl = ref<string>("");
+const uploadImage = async (event: Event) => {
+	const fileList = (event.target as HTMLInputElement).files;
+	if (!fileList) return;
+
+	const file = fileList[0];
+	if (file.size === 0) return;
+
+	imageUrl.value = URL.createObjectURL(file);
+	console.log("file", imageUrl.value);
+};
+
+const imageUrlList = ref<string[]>([]);
+const uploadImageList = async (event: Event) => {
+	const fileList = (event.target as HTMLInputElement).files;
+	if (!fileList) return;
+
+	for (let i = 0; i < fileList.length; i++) {
+		imageUrlList.value.push(URL.createObjectURL(fileList[i]));
+	}
 };
 </script>
 

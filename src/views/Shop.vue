@@ -23,11 +23,11 @@
 	</el-card>
 
 	<el-card class="mt">
-		<el-row :gutter="20">
+		<el-row :gutter="15">
 			<el-col :span="6" v-for="item in options" :key="item">
 				<div class="item">
 					<el-image
-						style="width: 100px; height: 100px"
+						style="width: 250px; height: 150px"
 						:src="fruit"
 						fit="cover"
 					/>
@@ -44,7 +44,7 @@
 					<div class="divder">
 						<div>
 							<p class="fl ml"></p>
-							<div>
+							<div class="btnPart">
 								<el-button size="small" @click=""
 									>查看</el-button
 								>
@@ -70,6 +70,7 @@ const options = ref<any>([
 	{ value: 2, label: "茶" },
 	{ value: 3, label: "水果" },
 	{ value: 4, label: "果園" },
+	{ value: 5, label: "果園" },
 ]); //下拉菜單數據
 
 const radio = ref<number>(0);
@@ -104,13 +105,14 @@ const handleChange = () => {};
 	width: 100%;
 	height: 50px;
 	line-height: 50px;
-	background-color: #f7fbfe;
+	background-color: #6bdf84;
 
 	.divder {
 		background-color: #f4f4f4;
 		height: 2px;
-		width: 95%;
+		width: 100%;
 		margin: auto;
+		justify-items: center;
 	}
 }
 </style>
