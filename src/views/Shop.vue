@@ -6,7 +6,7 @@
 			placeholder="選擇"
 			filterable
 		>
-			<el-option> </el-option>
+			<el-option :value="1"> </el-option>
 		</el-select>
 	</el-card>
 
