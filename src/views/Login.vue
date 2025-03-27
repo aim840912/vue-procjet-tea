@@ -3,13 +3,13 @@
 		<div class="login">
 			<h1 class="title">豪德</h1>
 			<el-form :model="ruleForm" ref="formRef" :rules="rules">
-				<el-form-item>
+				<el-form-item prop="username">
 					<el-input
 						v-model="ruleForm.username"
 						placeholder="請輸入信箱或手機號碼"
 					></el-input>
 				</el-form-item>
-				<el-form-item>
+				<el-form-item prop="password">
 					<el-input
 						v-model="ruleForm.password"
 						placeholder="請輸入密碼"
@@ -58,7 +58,6 @@ const ruleForm: RuleForm = reactive({
 const rules = reactive<FormRules<RuleForm>>({
 	username: [
 		{ required: true, message: "please enter username", trigger: "blur" },
-		{ min: 3, trigger: "blur" },
 	],
 	password: [
 		{ required: true, message: "please enter password", trigger: "blur" },
@@ -78,6 +77,7 @@ const handleLogin = () => {
 	});
 };
 
+// 遊客模式
 const handleCustomLogin = async () => {
 	await userStore.login({ username: "custome", password: "custome666" });
 	router.push("/");
