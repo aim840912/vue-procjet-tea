@@ -1,5 +1,5 @@
 <template>
-	<el-card>
+	<!-- <el-card>
 		<el-select
 			v-model="value"
 			style="width: 300px"
@@ -8,7 +8,7 @@
 		>
 			<el-option :value="1"> </el-option>
 		</el-select>
-	</el-card>
+	</el-card> -->
 
 	<el-card class="mt">
 		<el-radio-group size="large" v-model="radio" @change="handleChange">
@@ -21,57 +21,33 @@
 			<el-radio-button :label="`持續新增(${checkCount(6)})`" :value="6" />
 		</el-radio-group>
 	</el-card>
-
-	<el-card class="mt">
-		<el-row :gutter="15">
-			<el-col :span="6" v-for="item in options" :key="item">
-				<div class="item">
-					<el-image
-						style="width: 250px; height: 150px"
-						:src="fruit"
-						fit="cover"
-					/>
-					<div class="info">
-						<h3>{{ item.label }}</h3>
-						<hr class="mb" />
-						<p>content1</p>
-						<p>content2</p>
-						<p>content3</p>
-						<p>content4</p>
-					</div>
-				</div>
-				<div class="btn">
-					<div class="divder">
-						<div>
-							<p class="fl ml"></p>
-							<div class="btnPart">
-								<el-button size="small" @click=""
-									>查看</el-button
-								>
-								<el-button size="small" @click=""
-									>添加</el-button
-								>
-							</div>
-						</div>
-					</div>
-				</div>
-			</el-col>
-		</el-row>
-	</el-card>
+	<div class="cards">
+		<el-card class="mt card" v-for="item in options" :key="item">
+			<div class="info">
+				<h3>{{ item.label }}</h3>
+				<hr class="mb" />
+			</div>
+			<div>
+				<el-image class="card-image" :src="fruit" fit="cover" />
+			</div>
+		</el-card>
+	</div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
 import fruit from "@/assets/picture/fruit.jpg";
 
-const value = ref<string>("");
 const options = ref<any>([
 	{ value: 1, label: "酒" },
 	{ value: 2, label: "茶" },
 	{ value: 3, label: "水果" },
 	{ value: 4, label: "果園" },
-	{ value: 5, label: "果園" },
-]); //下拉菜單數據
+	{ value: 6, label: "果園" },
+	{ value: 7, label: "果園" },
+	{ value: 8, label: "果園" },
+	{ value: 9, label: "果園" },
+]);
 
 const radio = ref<number>(0);
 
@@ -83,21 +59,19 @@ const handleChange = () => {};
 </script>
 
 <style lang="less" scoped>
-.item {
+.cards {
 	display: flex;
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: stretch;
 	align-items: center;
-	height: 200px;
-	background-color: rgb(247, 254, 247);
-	padding: 20px;
-	border-radius: 10px 10px 0 0;
 	margin-top: 20px;
-
-	.info {
-		color: #999;
-		margin-left: 30px;
-		line-height: 26px;
-		margin-top: -10px;
+}
+.card {
+	width: 150px;
+	margin: 10px;
+	.card-image {
+		width: 100%;
+		height: 10vh;
 	}
 }
 

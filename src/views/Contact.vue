@@ -45,16 +45,15 @@
 			<el-form-item label="另外的要求" prop="desc">
 				<el-input v-model="ruleform.desc" type="textarea" />
 			</el-form-item>
-			<div>
-				<el-form-item class="btn-group">
-					<el-button class="btn1" type="primary" @click="onSubmit"
-						>送出</el-button
-					>
-					<el-button class="btn2" @click="resetForm(formRef)"
-						>全部重置</el-button
-					>
-				</el-form-item>
-			</div>
+
+			<el-form-item class="btn-group">
+				<el-button class="btn1" type="primary" @click="onSubmit"
+					>送出</el-button
+				>
+				<el-button class="btn2" @click="resetForm(formRef)"
+					>全部重置</el-button
+				>
+			</el-form-item>
 		</el-form>
 	</div>
 </template>
