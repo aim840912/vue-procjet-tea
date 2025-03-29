@@ -10,7 +10,7 @@
 			/>
 			<el-dropdown @command="handleCommand">
 				<span class="el-dropdown-link">
-					<!-- 歡迎 {{ username }} -->
+					歡迎 {{ username }}
 					<el-icon class="el-icon--right">
 						<arrow-down />
 					</el-icon>
@@ -33,11 +33,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useUserStore } from "@/store/auth";
-// import { storeToRefs } from "pinia";
+import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const router = useRouter();
 const userStore = useUserStore();
-// const { username } = storeToRefs(userStore);
+const { username } = storeToRefs(userStore);
 const info = ref(5);
 
 const handleCommand = (command: string) => {
