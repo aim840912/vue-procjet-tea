@@ -1,17 +1,6 @@
 <template>
-	<el-card class="mt">
-		<el-radio-group size="large" v-model="radio" @change="handleChange">
-			<el-radio-button :label="`全部商品`" :value="0" />
-			<el-radio-button :label="`酒類(${checkCount(1)})`" :value="1" />
-			<el-radio-button :label="`茶類(${checkCount(2)})`" :value="2" />
-			<el-radio-button :label="`水果類(${checkCount(3)})`" :value="3" />
-			<el-radio-button :label="`其他類(${checkCount(4)})`" :value="4" />
-			<el-radio-button :label="`觀光類(${checkCount(5)})`" :value="5" />
-			<el-radio-button :label="`持續新增(${checkCount(6)})`" :value="6" />
-		</el-radio-group>
-	</el-card>
 	<div class="cards">
-		<el-card class="mt card" v-for="item in options" :key="item">
+		<el-card class="mt card" v-for="item in dataList" :key="item">
 			<div>
 				<el-image class="card-image" :src="fruit" fit="cover" />
 			</div>
@@ -20,13 +9,13 @@
 				<hr />
 			</div>
 			<div>
-				<p class="info-label">{{ item.label }}</p>
+				<p class="info-label">{{ item.title }}</p>
 			</div>
-			<div>
+			<div class="div-info-content">
 				<p class="info-content">{{ item.content }}</p>
 			</div>
 			<div class="div-price">
-				<p class="price">$ {{ item.price }}</p>
+				<p class="price">$ {{ item.money }}</p>
 			</div>
 		</el-card>
 	</div>
@@ -35,61 +24,52 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import fruit from "@/assets/picture/fruit.jpg";
+import { useHttp } from "@/hooks/useHttp";
+import { type SelectionListType, type SearchType } from "@/types/shop";
 
-const options = ref<any>([
-	{ value: 1, price: 20, category: "種類", content: "物品詳情", label: "酒" },
-	{ value: 2, price: 20, category: "種類", content: "物品詳情", label: "茶" },
-	{
-		value: 3,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "水果",
-	},
-	{
-		value: 4,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "果園",
-	},
-	{
-		value: 6,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "果園",
-	},
-	{
-		value: 7,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "果園",
-	},
-	{
-		value: 8,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "果園",
-	},
-	{
-		value: 9,
-		price: 20,
-		category: "種類",
-		content: "物品詳情",
-		label: "果園",
-	},
-]);
+const searchParams = ref<SearchType>({
+	orderNo: "",
+	startTime: "",
+	endTime: "",
+	money: "",
+	category: "",
+	title: "",
+	content: "",
+	image: "",
+});
 
-const radio = ref<number>(0);
+const {
+	dataList,
+	loading,
+	totals,
+	pageInfo,
+	loadData,
+	handleSizeChange,
+	handleCurrentChange,
+	resetPagination,
+} = useHttp<SelectionListType>("/productList", searchParams);
 
-function checkCount(num: number) {
-	return num;
-}
+const date = ref();
 
-const handleChange = () => {};
+const handleReset = () => {
+	date.value = "";
+	searchParams.value = {
+		orderNo: "",
+		startTime: "",
+		endTime: "",
+		money: "",
+		category: "",
+		title: "",
+		content: "",
+		image: "",
+	};
+	resetPagination();
+};
+
+const handleChange = (val: string[]) => {
+	searchParams.value.startTime = val[0];
+	searchParams.value.endTime = val[1];
+};
 </script>
 
 <style lang="less" scoped>
@@ -118,6 +98,9 @@ const handleChange = () => {};
 		color: rgb(136, 136, 255);
 		font-weight: 500;
 		font-size: 30px;
+	}
+	.div-info-content {
+		margin-top: 5px;
 	}
 	.div-price {
 		margin-top: 20px;
