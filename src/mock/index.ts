@@ -77,12 +77,17 @@ Mock.mock('https://www.demo.com/productList', "post", (options: any) => {
                 'category|1': ["茶類", "咖啡類", "果園"],
                 'title|1': ["綠茶包", "綠茶葉", "綠茶禮盒", "紅茶包", "紅茶葉", "紅茶禮盒", "咖啡豆", "咖啡包", "紅肉李"],
                 'content|1': ["這是綠茶茶包的內容", "這是綠茶茶葉的內容", "這是綠茶禮盒的內容", "這是紅茶茶包的內容", "這是紅茶茶葉的內容", "這是紅茶禮盒的內容", "這是咖啡豆的內容", "這是咖啡包的內容", "這是紅肉李的內容"],
-                'image': '@image("200x200", @title)',
+                'image|1': [fruit, fruit2, tea, tea2, teabag],
             }],
-            "total": 20,
+            "total": 50,
         })
     }
 })
+import fruit from "@/assets/picture/fruit.jpg";
+import fruit2 from "@/assets/picture/fruit2.jpg";
+import tea from "@/assets/picture/tea.jpg";
+import tea2 from "@/assets/picture/tea2.jpg";
+import teabag from "@/assets/picture/teabag.jpg";
 
 const productList = [
     {

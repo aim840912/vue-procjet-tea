@@ -14,12 +14,12 @@
 				<span>首頁</span>
 			</template>
 		</el-menu-item>
-		<el-sub-menu index="/shop">
+		<el-sub-menu index="/product">
 			<template #title>
 				<el-icon><document /></el-icon>
 				<span>商品專區</span>
 			</template>
-			<el-menu-item index="/shop">全部商品</el-menu-item>
+			<el-menu-item index="/product">全部商品</el-menu-item>
 			<el-menu-item index="2-1">果園</el-menu-item>
 			<el-sub-menu index="2-2">
 				<template #title>茶</template>

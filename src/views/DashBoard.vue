@@ -34,10 +34,10 @@
 				</div>
 				<div class="card content">
 					<div class="card-content">
-						<div class="card-image" @click="goToShop">
+						<div class="card-image" @click="goToProduct">
 							<img :src="fruit1" />
 						</div>
-						<div class="label">Shop</div>
+						<div class="label">Product</div>
 						<div class="card-title">article3</div>
 					</div>
 				</div>
@@ -66,8 +66,8 @@ import tea2 from "@/assets/picture/tea2.jpg";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
-const goToShop = () => {
-	router.push("/shop");
+const goToProduct = () => {
+	router.push("/product");
 };
 const goToContact = () => {
 	router.push("/contact");

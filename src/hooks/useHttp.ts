@@ -11,7 +11,7 @@ export function useHttp<T>(url: string, initialParams: any) {
         try {
             const { data: { list, total } } = await post(url, { ...unref(initialParams), ...pageInfo })
             dataList.value = list
-            total.value = total
+            totals.value = total
         } catch (error) {
 
         } finally {
