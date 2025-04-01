@@ -72,7 +72,7 @@
 						</el-checkbox-group>
 					</el-form-item>
 
-					<el-button class="btn" type="primary" @click="onSubmit"
+					<el-button class="btn mb" type="primary" @click="onSubmit"
 						>確定更改</el-button
 					>
 				</el-form>

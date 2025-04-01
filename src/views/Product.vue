@@ -129,7 +129,7 @@ const handleChange = (val: string[]) => {
 	searchParams.value.endTime = val[1];
 };
 const handleClick = (orderNo: string) => {
-	router.push("/operations/detail?orderNo=" + orderNo);
+	router.push("/product/detail?orderNo=" + orderNo);
 };
 </script>
 

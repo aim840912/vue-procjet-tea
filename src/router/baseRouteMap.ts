@@ -24,6 +24,12 @@ const routes: RouteRecordRaw[] = [
                 path: "/product",
                 name: "Product",
                 component: () => import("@/views/Product.vue"),
+                meta: { keepAlive: true }
+            },
+            {
+                path: "/product/detail",
+                name: "Detail",
+                component: () => import("@/views/Detail.vue"),
             },
             {
                 path: "/appearmap",

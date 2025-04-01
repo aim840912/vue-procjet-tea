@@ -12,6 +12,7 @@ export function useHttp<T>(url: string, initialParams: any) {
             const { data: { list, total } } = await post(url, { ...unref(initialParams), ...pageInfo })
             dataList.value = list
             totals.value = total
+            console.log("產品列表接口返回數據", initialParams)
         } catch (error) {
 
         } finally {
@@ -39,6 +40,12 @@ export function useHttp<T>(url: string, initialParams: any) {
         loadData()
     }
 
+    const handleSearch = (params: any) => {
+        pageInfo.page = 1; // 重置頁碼為1
+        Object.assign(pageInfo, params) // 將傳入的參數合併到pageInfo中
+        loadData()
+    }
+
     return {
         dataList,
         loading,
@@ -47,6 +54,7 @@ export function useHttp<T>(url: string, initialParams: any) {
         loadData,
         handleSizeChange,
         handleCurrentChange,
-        resetPagination
+        resetPagination,
+        handleSearch,
     }
 }
