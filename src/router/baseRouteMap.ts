@@ -11,39 +11,39 @@ const routes: RouteRecordRaw[] = [
         children: [
             {
                 path: "/dashboard",
-                name: "Dashboard",
+                name: "dashboard",
                 component: () => import("@/views/DashBoard.vue")
             },
             {
                 path: "/personal",
-                name: "Personal",
+                name: "personal",
                 component: () => import("@/views/Personal.vue"),
 
             },
             {
                 path: "/product",
-                name: "Product",
+                name: "product",
                 component: () => import("@/views/Product.vue"),
-                meta: { keepAlive: true }
+                // meta: { keepAlive: true }
             },
             {
                 path: "/product/detail",
-                name: "Detail",
+                name: "detail",
                 component: () => import("@/views/Detail.vue"),
             },
             {
                 path: "/appearmap",
-                name: "Appearmap",
+                name: "appearmap",
                 component: () => import("@/views/AppearMap.vue"),
             },
             {
                 path: "/contact",
-                name: "Contact",
+                name: "contact",
                 component: () => import("@/views/Contact.vue"),
             },
             {
                 path: "/addproduct",
-                name: "Addproduct",
+                name: "addproduct",
                 component: () => import("@/views/AddProduct.vue"),
             }
         ]

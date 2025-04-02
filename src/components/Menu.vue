@@ -6,7 +6,10 @@
 		default-active="1"
 		:router="true"
 	>
-		<el-menu-item index="/dashboard">
+		<el-menu-item
+			index="/dashboard"
+			@click="add('dashboard', '/dashboard', 'location')"
+		>
 			<template #title>
 				<el-icon>
 					<location />
@@ -14,7 +17,10 @@
 				<span>首頁</span>
 			</template>
 		</el-menu-item>
-		<el-sub-menu index="/product">
+		<el-sub-menu
+			index="/product"
+			@click="add('product', '/product', 'location')"
+		>
 			<template #title>
 				<el-icon><document /></el-icon>
 				<span>商品專區</span>
@@ -32,7 +38,10 @@
 				<el-menu-item index="2-3-2">咖啡豆</el-menu-item>
 			</el-sub-menu>
 		</el-sub-menu>
-		<el-sub-menu index="/appearmap">
+		<el-sub-menu
+			@click="add('appearmap', '/appearmap', 'location')"
+			index="/appearmap"
+		>
 			<template #title>
 				<el-icon><document /></el-icon>
 				<span>出現地點</span>
@@ -46,19 +55,28 @@
 			</el-sub-menu>
 		</el-sub-menu>
 
-		<el-menu-item index="/contact">
+		<el-menu-item
+			@click="add('contact', '/contact', 'location')"
+			index="/contact"
+		>
 			<el-icon>
 				<document />
 			</el-icon>
 			<span>聯絡專區</span>
 		</el-menu-item>
-		<el-menu-item index="/addproduct">
+		<el-menu-item
+			@click="add('addproduct', '/addproduct', 'location')"
+			index="/addproduct"
+		>
 			<el-icon>
 				<document />
 			</el-icon>
 			<span>新增產品</span>
 		</el-menu-item>
-		<el-menu-item index="/personal">
+		<el-menu-item
+			@click="add('personal', '/personal', 'location')"
+			index="/personal"
+		>
 			<el-icon>
 				<setting />
 			</el-icon>
@@ -67,7 +85,18 @@
 	</el-menu>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { defineComponent, type PropType } from "vue";
+import { type MenuItem as MenuItemType } from "@/types/user";
+import { useTabsStore } from "@/store/tabs";
+
+const tabsStore = useTabsStore();
+const { addTab, setCurrentTab } = tabsStore;
+const add = (name: string, url: string, icon: string) => {
+	addTab(name, url, icon);
+	setCurrentTab(name, url);
+};
+</script>
 
 <style scoped lang="less">
 .el-menu-vertical-demo {

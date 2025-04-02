@@ -3,6 +3,43 @@ import Mock from "mockjs"
 Mock.setup({
     timeout: "200-600" //設置延遲時間
 })
+const menulist = [
+    {
+        name: "dashboard",
+        url: "/dashboard",
+        icon: "DataLine"
+    },
+    {
+        name: "product",
+        url: "/product",
+        icon: "Lightning",
+    },
+    {
+        name: "appearmap",
+        url: "/appearmap",
+        icon: "MapLocation"
+    },
+    {
+        name: "detail",
+        url: "/product/detail",
+        icon: "Files",
+    },
+    {
+        name: "personal",
+        url: "/personal",
+        icon: "Phone"
+    },
+    {
+        name: "contact",
+        url: "/contact",
+        icon: "Magnet"
+    },
+    {
+        name: "addproduct",
+        url: "/addproduct",
+        icon: "Document"
+    }
+]
 
 Mock.mock("https://www.demo.com/login", "post", (options: any) => {
     const { username, password } = JSON.parse(options.body);
@@ -17,6 +54,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                     username: "最高權限的人",
                     roles: ["admin"],
                 },
+                menulist
 
             }
         }
@@ -30,6 +68,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                     username: "普通路人",
                     roles: ["user"]
                 },
+                menulist
 
             }
         }
