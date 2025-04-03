@@ -226,7 +226,7 @@ const goToMap = () => {
 	background: #2be68f;
 }
 .card:hover {
-	transform: scale(1.05);
+	transform: scale(1.01);
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
 }
 .card:hover .form-title:before {

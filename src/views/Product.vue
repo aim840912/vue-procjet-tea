@@ -5,6 +5,7 @@
 				<el-input
 					placeholder="請輸入訂單名字"
 					v-model="searchParams.title"
+					@change="handleSearch(searchParams.title)"
 				/>
 			</el-col>
 			<el-col :span="6">
@@ -19,7 +20,11 @@
 				</el-select>
 			</el-col>
 			<el-col :span="6">
-				<el-input placeholder="訂單金額" v-model="searchParams.money" />
+				<el-input
+					placeholder="訂單金額"
+					v-model="searchParams.money"
+					type="number"
+				/>
 			</el-col>
 			<el-col :span="6">
 				<el-button type="primary" @click="loadData">查詢</el-button>
@@ -49,18 +54,11 @@
 			<div>
 				<el-image class="card-image" :src="item.image" fit="cover" />
 			</div>
-			<div class="info-category">
-				<h3 class="info-category-h3">{{ item.category }}</h3>
-				<hr />
-			</div>
 			<div>
 				<p class="info-label">{{ item.title }}</p>
 			</div>
-			<div class="div-info-content">
-				<p class="info-content">{{ item.content }}</p>
-			</div>
 			<div class="div-price">
-				<p class="price">${{ item.money }}</p>
+				<p class="mt price">${{ item.money }}</p>
 			</div>
 		</el-card>
 	</div>
@@ -89,7 +87,7 @@ const searchParams = ref<SearchType>({
 	orderNo: "",
 	startTime: "",
 	endTime: "",
-	money: "",
+	money: 0,
 	category: "",
 	title: "",
 	content: "",
@@ -105,6 +103,7 @@ const {
 	handleSizeChange,
 	handleCurrentChange,
 	resetPagination,
+	handleSearch,
 } = useHttp<SelectionListType>("/productList", searchParams);
 
 const date = ref();
@@ -115,7 +114,7 @@ const handleReset = () => {
 		orderNo: "",
 		startTime: "",
 		endTime: "",
-		money: "",
+		money: 0,
 		category: "",
 		title: "",
 		content: "",
@@ -125,11 +124,18 @@ const handleReset = () => {
 };
 
 const handleChange = (val: string[]) => {
-	searchParams.value.startTime = val[0];
-	searchParams.value.endTime = val[1];
+	// searchParams.value.startTime = val[0];
+	// searchParams.value.endTime = val[1];
 };
 const handleClick = (orderNo: string) => {
-	router.push("/product/detail?orderNo=" + orderNo);
+	console.log("orderNo", orderNo);
+	// router.push("/product/detail?orderNo=" + orderNo);
+	router.push({
+		name: "detail",
+		query: { orderNo },
+		// params: { orderNo: orderNo },
+		// hash: "#orderNo",
+	});
 };
 </script>
 
@@ -145,34 +151,22 @@ const handleClick = (orderNo: string) => {
 	margin-top: 20px;
 }
 .card {
-	width: 250px;
-	height: 350px;
+	width: 240px;
 	margin: 10px;
 	.card-image {
 		width: 100%;
-		height: 20vh;
-	}
-	.info-category {
-		color: rgb(136, 136, 255);
-		.info-category-h3 {
-			text-align: right;
-		}
+		height: 150px;
 	}
 	.info-label {
 		color: rgb(136, 136, 255);
 		font-weight: 500;
-		font-size: 30px;
+		font-size: 20px;
 	}
-	.div-info-content {
-		margin-top: 5px;
-	}
-	.div-price {
-		margin-top: 20px;
-	}
+
 	.price {
 		color: rgb(230, 95, 95);
-		font-weight: 500;
-		font-size: 30px;
+		font-weight: 800;
+		font-size: 20px;
 	}
 }
 

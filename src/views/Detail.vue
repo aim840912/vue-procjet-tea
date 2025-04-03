@@ -4,7 +4,7 @@
 			<div class="image-containter">
 				<el-image
 					ref="imageRef"
-					:src="url"
+					:src="dataList.image"
 					show-progress
 					:preview-src-list="srcList"
 					fit="cover"
@@ -14,19 +14,15 @@
 		<el-col :span="10" class="product-container">
 			<div class="mr">
 				<div class="category ml">
-					<p>catelogy</p>
+					<p>{{ dataList.category }}</p>
 				</div>
 				<div>
-					<h1 class="title mt mb ml">Title</h1>
+					<h1 class="title mt mb ml">{{ dataList.title }}</h1>
 				</div>
-				<p class="price ml">$100</p>
+				<p class="price ml">{{ dataList.money }}</p>
 				<div class="content mt ml">
 					<p>
-						Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Commodi eligendi enim nostrum suscipit similique neque
-						asperiores officia facilis ullam voluptas impedit error
-						tempore quia repellat perspiciatis quidem, pariatur
-						accusamus ut.
+						{{ dataList.content }}
 					</p>
 				</div>
 			</div>
@@ -38,11 +34,43 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import type { ImageInstance } from "element-plus";
+import { post } from "@/utils/http";
 
-const url =
-	"https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg";
+const props = defineProps(["orderNo"]);
+
+onMounted(() => {
+	loadData();
+});
+
+const loading = ref<boolean>(false);
+const dataList = ref({
+	orderNo: "",
+	startTime: "",
+	endTime: "",
+	money: 0,
+	category: "",
+	title: "",
+	content: "",
+	image: "",
+});
+
+const loadData = async () => {
+	loading.value = true;
+	try {
+		const { data } = await post("/product/detail", {
+			orderNo: props.orderNo,
+		});
+		dataList.value = data;
+		console.log("datalist", dataList.value);
+	} catch (error) {
+	} finally {
+		loading.value = false;
+	}
+};
+// loadData();
+
 const srcList = [
 	"https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
 	"https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg",

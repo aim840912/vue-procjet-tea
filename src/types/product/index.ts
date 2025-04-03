@@ -2,7 +2,7 @@ interface SelectionListType {
     orderNo: string;
     startTime: string;
     endTime: string;
-    money: string;
+    money: number;
     category: string;
     title: string;
     content: string;
@@ -13,7 +13,7 @@ interface SearchType {
     orderNo: string;
     startTime: string;
     endTime: string;
-    money: string;
+    money: number;
     category: string;
     title: string;
     content: string;

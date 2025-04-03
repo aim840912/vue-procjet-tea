@@ -1,5 +1,4 @@
 <template>
-	<div class="logo"><h1>豪德</h1></div>
 	<el-menu
 		active-text-color="#ffd04b"
 		class="el-menu-vertical-demo"
@@ -86,8 +85,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineComponent, type PropType } from "vue";
-import { type MenuItem as MenuItemType } from "@/types/user";
 import { useTabsStore } from "@/store/tabs";
 
 const tabsStore = useTabsStore();

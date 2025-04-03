@@ -1,5 +1,6 @@
 <template>
 	<div class="header">
+		<p style="display: inline">豪德</p>
 		<div class="personal">
 			<el-badge :is-dot="info > 0" class="item">
 				<el-icon><Bell /></el-icon>

@@ -30,6 +30,7 @@ const routes: RouteRecordRaw[] = [
                 path: "/product/detail",
                 name: "detail",
                 component: () => import("@/views/Detail.vue"),
+                props(route) { return route.query }
             },
             {
                 path: "/appearmap",
