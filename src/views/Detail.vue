@@ -1,7 +1,7 @@
 <template>
 	<el-row :gutter="5">
 		<el-col :span="12" class="mb">
-			<div class="image-containter">
+			<div class="main-image ml">
 				<el-image
 					ref="imageRef"
 					:src="dataList.image"
@@ -9,6 +9,18 @@
 					:preview-src-list="srcList"
 					fit="cover"
 				/>
+			</div>
+			<div class="small-image mt">
+				<el-carousel :interval="4000" type="card" height="300px">
+					<el-carousel-item v-for="item in srcList" :key="item">
+						<el-image
+							ref="imageRef"
+							:src="item"
+							show-progress
+							fit="cover"
+						/>
+					</el-carousel-item>
+				</el-carousel>
 			</div>
 		</el-col>
 		<el-col :span="10" class="product-container">
@@ -19,7 +31,7 @@
 				<div>
 					<h1 class="title mt mb ml">{{ dataList.title }}</h1>
 				</div>
-				<p class="price ml">{{ dataList.money }}</p>
+				<p class="price ml">$ {{ dataList.money }}</p>
 				<div class="content mt ml">
 					<p>
 						{{ dataList.content }}
@@ -29,7 +41,13 @@
 		</el-col>
 	</el-row>
 	<div>
-		<el-button class="cart-btn" type="danger" plain>放入購物車</el-button>
+		<el-button
+			class="cart-btn"
+			type="danger"
+			plain
+			@click="addToCart(dataList.orderNo)"
+			>放入購物車</el-button
+		>
 	</div>
 </template>
 
@@ -37,6 +55,9 @@
 import { onMounted, ref } from "vue";
 import type { ImageInstance } from "element-plus";
 import { post } from "@/utils/http";
+import { useUserStore } from "@/store/auth";
+
+const userStore = useUserStore();
 
 const props = defineProps(["orderNo"]);
 
@@ -69,7 +90,9 @@ const loadData = async () => {
 		loading.value = false;
 	}
 };
-// loadData();
+const addToCart = (orderNo: string) => {
+	userStore.addProduct(orderNo);
+};
 
 const srcList = [
 	"https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg",
@@ -84,6 +107,15 @@ const srcList = [
 const imageRef = ref<ImageInstance>();
 </script>
 <style scoped lang="less">
+.main-image {
+	width: 90%;
+	height: 400px;
+	overflow: hidden;
+	.el-image {
+		width: 100%;
+		height: 100%;
+	}
+}
 .category {
 	p {
 		font-size: 20px;

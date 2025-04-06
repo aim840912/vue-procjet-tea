@@ -16,7 +16,7 @@
 				<span>首頁</span>
 			</template>
 		</el-menu-item>
-		<el-sub-menu
+		<el-menu-item
 			index="/product"
 			@click="add('product', '/product', 'location')"
 		>
@@ -24,19 +24,7 @@
 				<el-icon><document /></el-icon>
 				<span>商品專區</span>
 			</template>
-			<el-menu-item index="/product">全部商品</el-menu-item>
-			<el-menu-item index="2-1">果園</el-menu-item>
-			<el-sub-menu index="2-2">
-				<template #title>茶</template>
-				<el-menu-item index="2-2-1">茶葉</el-menu-item>
-				<el-menu-item index="2-2-2">茶包</el-menu-item>
-			</el-sub-menu>
-			<el-sub-menu index="2-3">
-				<template #title>咖啡</template>
-				<el-menu-item index="2-3-1">咖啡包</el-menu-item>
-				<el-menu-item index="2-3-2">咖啡豆</el-menu-item>
-			</el-sub-menu>
-		</el-sub-menu>
+		</el-menu-item>
 		<el-sub-menu
 			@click="add('appearmap', '/appearmap', 'location')"
 			index="/appearmap"
@@ -45,13 +33,8 @@
 				<el-icon><document /></el-icon>
 				<span>出現地點</span>
 			</template>
-			<el-menu-item index="/appearmap">全部地點</el-menu-item>
-			<el-menu-item index="3-1">定點</el-menu-item>
-			<el-sub-menu index="3-2">
-				<template #title>擺攤</template>
-				<el-menu-item index="3-2-1">嘉義</el-menu-item>
-				<el-menu-item index="3-2-2">台南</el-menu-item>
-			</el-sub-menu>
+			<el-menu-item index="/appearmap">定點</el-menu-item>
+			<el-menu-item index="3-1">擺攤</el-menu-item>
 		</el-sub-menu>
 
 		<el-menu-item

@@ -13,10 +13,10 @@
 					placeholder="訂單種類"
 					v-model="searchParams.category"
 				>
-					<el-option label="全部" :value="1"></el-option>
+					<el-option label="全部" value=""></el-option>
 					<el-option label="茶類" value="茶類"></el-option>
-					<el-option label="咖啡類" :value="3"></el-option>
-					<el-option label="果園" :value="4"></el-option>
+					<el-option label="咖啡類" value="咖啡類"></el-option>
+					<el-option label="果園" value="果園"></el-option>
 				</el-select>
 			</el-col>
 			<el-col :span="6">
@@ -31,7 +31,7 @@
 				<el-button @click="handleReset">重置</el-button>
 			</el-col>
 
-			<el-col :span="6" class="mt">
+			<!-- <el-col :span="6" class="mt">
 				<el-date-picker
 					v-model="date"
 					type="daterange"
@@ -41,7 +41,7 @@
 					@change="handleChange"
 					value-format="YYYY-MM-DD"
 				/>
-			</el-col>
+			</el-col> -->
 		</el-row>
 	</el-card>
 	<div class="cards" v-loading="loading">
@@ -59,6 +59,9 @@
 			</div>
 			<div class="div-price">
 				<p class="mt price">${{ item.money }}</p>
+			</div>
+			<div>
+				<p>category : {{ item.category }}</p>
 			</div>
 		</el-card>
 	</div>
@@ -82,13 +85,21 @@ import { ref } from "vue";
 import { useHttp } from "@/hooks/useHttp";
 import { type SelectionListType, type SearchType } from "@/types/product";
 import router from "@/router";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+console.log("route.query.category", route.query.category);
+const category = ref<string>(route.query.category as string);
+
+category.value = category.value === undefined ? "" : category.value;
 
 const searchParams = ref<SearchType>({
 	orderNo: "",
 	startTime: "",
 	endTime: "",
 	money: 0,
-	category: "",
+	category: category.value,
 	title: "",
 	content: "",
 	image: "",
@@ -104,7 +115,7 @@ const {
 	handleCurrentChange,
 	resetPagination,
 	handleSearch,
-} = useHttp<SelectionListType>("/productList", searchParams);
+} = useHttp<SelectionListType>("/product", searchParams);
 
 const date = ref();
 
@@ -124,17 +135,13 @@ const handleReset = () => {
 };
 
 const handleChange = (val: string[]) => {
-	// searchParams.value.startTime = val[0];
-	// searchParams.value.endTime = val[1];
+	searchParams.value.startTime = val[0];
+	searchParams.value.endTime = val[1];
 };
 const handleClick = (orderNo: string) => {
-	console.log("orderNo", orderNo);
-	// router.push("/product/detail?orderNo=" + orderNo);
 	router.push({
 		name: "detail",
 		query: { orderNo },
-		// params: { orderNo: orderNo },
-		// hash: "#orderNo",
 	});
 };
 </script>

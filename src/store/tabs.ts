@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue"
 import type { MenuItem } from "@/types/user"
+
 export const useTabsStore = defineStore("tabs", () => {
     const tabs = ref<MenuItem[]>([]);
     const currentTab = ref<{ name: string, url: string }>({ name: "", url: "" })
@@ -9,6 +10,10 @@ export const useTabsStore = defineStore("tabs", () => {
         console.log("添加的tab", name, url, icon)
         if (!tabs.value.some((tab) => tab.url === url)) {
             tabs.value.push({ name, url, icon })
+        }
+        for (let index = 0; index < tabs.value.length; index++) {
+            const element = tabs.value[index];
+            console.log("当前的tabs", element)
         }
     }
 

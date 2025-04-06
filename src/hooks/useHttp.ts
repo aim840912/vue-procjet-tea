@@ -42,7 +42,6 @@ export function useHttp<T>(url: string, initialParams: any) {
 
     const handleSearch = (params: any) => {
         pageInfo.page = 1;
-        console.log("params", params)
         Object.assign(pageInfo, params)
         loadData()
     }

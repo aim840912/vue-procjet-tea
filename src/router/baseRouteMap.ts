@@ -24,7 +24,8 @@ const routes: RouteRecordRaw[] = [
                 path: "/product",
                 name: "product",
                 component: () => import("@/views/Product.vue"),
-                // meta: { keepAlive: true }
+                props(route) { return route.query },
+                meta: { keepAlive: true }
             },
             {
                 path: "/product/detail",

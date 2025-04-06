@@ -25,12 +25,6 @@
 					<el-descriptions-item label="地址"
 						>台灣嘉義市</el-descriptions-item
 					>
-					<el-descriptions-item label="個人標籤">
-						<el-tag type="primary" class="mr">認真</el-tag>
-						<el-tag type="success" class="mr">工作狂</el-tag>
-						<el-tag type="info" class="mr">與人和善</el-tag>
-						<el-tag type="warning" class="mr">代碼潔癖</el-tag>
-					</el-descriptions-item>
 				</el-descriptions>
 			</el-card>
 			<el-card class="mt">

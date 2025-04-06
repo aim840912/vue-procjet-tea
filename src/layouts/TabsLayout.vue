@@ -74,7 +74,7 @@ setCurrentTab(name, url);
 
 const handleClick = ({ index }: { index: number }) => {
 	router.push(tabs.value[index].url);
-	setCurrentTab(tabs.value[index].name, tabs.value[index].url); //设置当前高亮
+	setCurrentTab(tabs.value[index].name, tabs.value[index].url);
 };
 const remove = (TabPaneName: string) => {
 	removeTab(TabPaneName);

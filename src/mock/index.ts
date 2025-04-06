@@ -54,7 +54,8 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                     username: "最高權限的人",
                     roles: ["admin"],
                 },
-                menulist
+                menulist,
+                carts: ["123", "456", "789"]
 
             }
         }
@@ -68,7 +69,8 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                     username: "顧客",
                     roles: ["user"]
                 },
-                menulist
+                menulist,
+                carts: ["123", "456", "789"]
 
             }
         }
@@ -100,7 +102,7 @@ Mock.mock("https://www.demo.com/product/delete", "post", (options: any) => {
     };
 })
 
-Mock.mock('https://www.demo.com/productList', "post", (options: any) => {
+Mock.mock('https://www.demo.com/product', "post", (options: any) => {
     const { pageSize, title, category, money } = JSON.parse(options.body);
 
     console.log("產品列表接口收到參數", JSON.parse(options.body))
@@ -114,7 +116,7 @@ Mock.mock('https://www.demo.com/productList', "post", (options: any) => {
                 'startTime': '08:00:23',
                 'endTime': '09:10:11',
                 'money|1': function () { return money != 0 ? specificPriceList(money)[Math.floor(Math.random() * specificPriceList(money).length)] : moneyList[Math.floor(Math.random() * moneyList.length)]; },
-                'category|1': function () { return category != "" ? specificList(category)[Math.floor(Math.random() * specificList(category).length)] : categoryList[Math.floor(Math.random() * categoryList.length)]; },
+                'category': function () { return category != "" ? category : categoryList[Math.floor(Math.random() * categoryList.length)]; },
                 'title|1': function () { return title != "" ? specificList(title)[Math.floor(Math.random() * specificList(title).length)] : productList[Math.floor(Math.random() * productList.length)]; },
                 'content|1': ["這是綠茶茶包的內容", "這是綠茶茶葉的內容", "這是綠茶禮盒的內容", "這是紅茶茶包的內容", "這是紅茶茶葉的內容", "這是紅茶禮盒的內容", "這是咖啡豆的內容", "這是咖啡包的內容", "這是紅肉李的內容"],
                 'image|1': [fruit, fruit2, tea, tea2, teabag],
