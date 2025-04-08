@@ -24,13 +24,20 @@
 					<el-button
 						class="btn"
 						type="primary"
+						@click="handleAdminLogin"
+						>完整模式</el-button
+					>
+					<br />
+					<el-button
+						class="btn"
+						type="primary"
 						@click="handleCustomLogin"
 						>遊客模式</el-button
 					>
 					<br />
-					<el-button class="btn" type="primary" @click="handleSignup"
+					<!-- <el-button class="btn" type="primary" @click="handleSignup"
 						>註冊</el-button
-					>
+					> -->
 				</el-form-item>
 			</el-form>
 		</div>
@@ -79,10 +86,16 @@ const handleCustomLogin = async () => {
 	await userStore.login({ username: "custome", password: "custome666" });
 	router.push("/");
 };
-const handleSignup = () => {
-	console.log("註冊");
-	router.push("/signup");
+
+const handleAdminLogin = async () => {
+	await userStore.login({ username: "admin", password: "admin" });
+	router.push("/");
 };
+
+// const handleSignup = () => {
+// 	console.log("註冊");
+// 	router.push("/signup");
+// };
 </script>
 
 <style scoped lang="less">

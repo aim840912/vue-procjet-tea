@@ -30,14 +30,36 @@ const menulist = [
         icon: "Phone"
     },
     {
-        name: "contact",
-        url: "/contact",
+        name: "edit",
+        url: "/product/edit",
         icon: "Magnet"
     },
     {
         name: "addproduct",
         url: "/addproduct",
         icon: "Document"
+    }
+]
+const menulistforcustome = [
+    {
+        name: "dashboard",
+        url: "/dashboard",
+        icon: "DataLine"
+    },
+    {
+        name: "product",
+        url: "/product",
+        icon: "Lightning",
+    },
+    {
+        name: "appearmap",
+        url: "/appearmap",
+        icon: "MapLocation"
+    },
+    {
+        name: "detail",
+        url: "/product/detail",
+        icon: "Files",
     }
 ]
 
@@ -55,8 +77,8 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                     roles: ["admin"],
                 },
                 menulist,
-                carts: ["123", "456", "789"]
-
+                carts: ["123", "456", "789"],
+                productList: ["111", "222", "333"],
             }
         }
     } else if (username === "custome" && password === "custome666") {
@@ -66,11 +88,11 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
             data: {
                 token: "usertokenkkljbuo2w9xla2",
                 user: {
-                    username: "顧客",
+                    username: "遊客",
                     roles: ["user"]
                 },
-                menulist,
-                carts: ["123", "456", "789"]
+                menulist: menulistforcustome,
+                carts: ["123"]
 
             }
         }
@@ -82,14 +104,21 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
     }
 })
 
-// 新增產品
+
 Mock.mock("https://www.demo.com/product/edit", 'post', (options: any) => {
     const res: any = JSON.parse(options.body);
     console.log("新增/編輯接口收到數據：", res)
     return {
         code: 200,
         success: true,
-        data: "操作成功",
+        data: {
+            orderNo: res.orderNo,
+            money: 100,
+            category: "茶類",
+            title: "綠茶包",
+            content: "這是綠茶包的內容",
+            image: tea,
+        },
     };
 });
 
@@ -150,7 +179,7 @@ Mock.mock('https://www.demo.com/product/detail', "post", (options: any) => {
             'category|1': ["茶類", "咖啡類", "果園"],
             'title|1': ["綠茶包", "綠茶葉", "綠茶禮盒", "紅茶包", "紅茶葉", "紅茶禮盒", "咖啡豆", "咖啡包", "紅肉李"],
             'content|1': ["這是綠茶茶包的內容", "這是綠茶茶葉的內容", "這是綠茶禮盒的內容", "這是紅茶茶包的內容", "這是紅茶茶葉的內容", "這是紅茶禮盒的內容", "這是咖啡豆的內容", "這是咖啡包的內容", "這是紅肉李的內容"],
-            'image|1': [fruit, fruit2, tea, tea2, teabag],
+            'image': [fruit, fruit2, tea, tea2, teabag],
         })
     }
 })

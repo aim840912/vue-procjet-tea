@@ -28,6 +28,11 @@ const routes: RouteRecordRaw[] = [
                 meta: { keepAlive: true }
             },
             {
+                path: "/product/edit",
+                name: "edit",
+                component: () => import("@/views/EditProduct.vue"),
+            },
+            {
                 path: "/product/detail",
                 name: "detail",
                 component: () => import("@/views/Detail.vue"),

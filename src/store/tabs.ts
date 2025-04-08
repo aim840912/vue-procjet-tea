@@ -7,13 +7,13 @@ export const useTabsStore = defineStore("tabs", () => {
     const currentTab = ref<{ name: string, url: string }>({ name: "", url: "" })
 
     const addTab = (name: string, url: string, icon: string) => {
-        console.log("添加的tab", name, url, icon)
+
         if (!tabs.value.some((tab) => tab.url === url)) {
             tabs.value.push({ name, url, icon })
         }
         for (let index = 0; index < tabs.value.length; index++) {
             const element = tabs.value[index];
-            console.log("当前的tabs", element)
+            console.log("當前的tabs", element)
         }
     }
 

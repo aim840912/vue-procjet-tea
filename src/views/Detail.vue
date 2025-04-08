@@ -3,15 +3,19 @@
 		<el-col :span="12" class="mb">
 			<div class="main-image ml">
 				<el-image
-					ref="imageRef"
-					:src="dataList.image"
+					:src="imageUrl"
 					show-progress
 					:preview-src-list="srcList"
 					fit="cover"
 				/>
 			</div>
 			<div class="small-image mt">
-				<el-carousel :interval="4000" type="card" height="300px">
+				<el-carousel
+					:interval="4000"
+					type="card"
+					height="300px"
+					@change="changeImage"
+				>
 					<el-carousel-item v-for="item in srcList" :key="item">
 						<el-image
 							ref="imageRef"
@@ -49,6 +53,26 @@
 			>放入購物車</el-button
 		>
 	</div>
+
+	<div>
+		<el-button
+			class="edit-button"
+			type="primary"
+			size="small"
+			@click="editProduct"
+		>
+			編輯產品</el-button
+		>
+		<el-button class="edit-button" type="danger" size="small" @click="">
+			刪除產品</el-button
+		>
+	</div>
+
+	<EditProduct
+		:visible="visible"
+		@close="visible = false"
+		:dataList="dataList"
+	/>
 </template>
 
 <script lang="ts" setup>
@@ -56,7 +80,7 @@ import { onMounted, ref } from "vue";
 import type { ImageInstance } from "element-plus";
 import { post } from "@/utils/http";
 import { useUserStore } from "@/store/auth";
-
+import EditProduct from "./EditProduct.vue";
 const userStore = useUserStore();
 
 const props = defineProps(["orderNo"]);
@@ -68,13 +92,10 @@ onMounted(() => {
 const loading = ref<boolean>(false);
 const dataList = ref({
 	orderNo: "",
-	startTime: "",
-	endTime: "",
 	money: 0,
 	category: "",
 	title: "",
 	content: "",
-	image: "",
 });
 
 const loadData = async () => {
@@ -83,7 +104,9 @@ const loadData = async () => {
 		const { data } = await post("/product/detail", {
 			orderNo: props.orderNo,
 		});
+		data.image.push(...srcList);
 		dataList.value = data;
+
 		console.log("datalist", dataList.value);
 	} catch (error) {
 	} finally {
@@ -103,8 +126,17 @@ const srcList = [
 	"https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg",
 	"https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg",
 ];
+const visible = ref<boolean>(false);
+const editProduct = () => {
+	visible.value = true;
+};
 
 const imageRef = ref<ImageInstance>();
+const imageUrl = ref<string>(srcList[0]);
+
+const changeImage = (index: number) => {
+	imageUrl.value = srcList[index];
+};
 </script>
 <style scoped lang="less">
 .main-image {

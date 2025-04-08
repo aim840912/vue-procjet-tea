@@ -41,24 +41,8 @@
 					</el-form>
 				</el-col>
 				<el-col :span="8">
-					<div>
-						<h1 class="mb">上傳產品圖片</h1>
-					</div>
-					<div class="d-flex justify-center pa-3">
-						選擇一個檔案
-						<img
-							v-if="imageUrl"
-							:src="imageUrl"
-							alt="Uploaded Image"
-						/>
-						<input
-							type="file"
-							@change="uploadImage"
-							accept="image/*"
-						/>
-					</div>
 					<div class="mb mt">
-						<p>選擇多個檔案</p>
+						<p>選擇要上傳的圖片</p>
 					</div>
 					<div class="d-flex justify-center pa-3">
 						<div
@@ -101,23 +85,10 @@ const formData = ref({
 	name: "",
 	price: "",
 	count: "",
-
 	category: "",
 });
 const handleSubmit = () => {
 	console.log("表單數據", formData.value);
-};
-
-const imageUrl = ref<string>("");
-const uploadImage = async (event: Event) => {
-	const fileList = (event.target as HTMLInputElement).files;
-	if (!fileList) return;
-
-	const file = fileList[0];
-	if (file.size === 0) return;
-
-	imageUrl.value = URL.createObjectURL(file);
-	console.log("file", imageUrl.value);
 };
 
 const imageUrlList = ref<string[]>([]);

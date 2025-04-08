@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useUserStore } from "@/store/auth";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
@@ -56,6 +56,17 @@ const router = useRouter();
 const userStore = useUserStore();
 const { username, carts } = storeToRefs(userStore);
 const info = ref(carts.value);
+
+watch(
+	() => info.value,
+	(newVal) => {
+		if (newVal.length > 0) {
+			info.value = newVal.length;
+		} else {
+			info.value = 0;
+		}
+	}
+);
 
 const handleCommand = (command: string) => {
 	if (command == "user") {
