@@ -1,8 +1,6 @@
 interface SelectionListType {
     orderNo: string;
-    startTime: string;
-    endTime: string;
-    money: number;
+    price: number;
     category: string;
     title: string;
     content: string;
@@ -11,9 +9,7 @@ interface SelectionListType {
 
 interface SearchType {
     orderNo: string;
-    startTime: string;
-    endTime: string;
-    money: number;
+    price: number;
     category: string;
     title: string;
     content: string;

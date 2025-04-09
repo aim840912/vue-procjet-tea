@@ -13,22 +13,25 @@ export const useUserStore = defineStore('user', {
         username: sessionStorage.getItem('username') || '',
         menu: sessionStorage.getItem("menu") ? JSON.parse(sessionStorage.getItem("menu")!) : [],
         carts: sessionStorage.getItem("carts") ? JSON.parse(sessionStorage.getItem("carts")!) : [],
+        products: sessionStorage.getItem("products") ? JSON.parse(sessionStorage.getItem("products")!) : [],
+
     }),
     actions: {
         async login(data: LoginParams) {
             try {
-                // console.log(data.username)
-                const { data: { token, user: { username, roles }, menulist, carts } } = await loginApi(data);
+                const { data: { token, user: { username, roles }, menulist, carts, products } } = await loginApi(data);
                 this.token = token;
                 this.roles = roles;
                 this.username = username;
                 this.menu = menulist;
                 this.carts = carts;
+                this.products = products;
                 sessionStorage.setItem("token", token);
                 sessionStorage.setItem("roles", JSON.stringify(roles))
                 sessionStorage.setItem("username", username)
                 sessionStorage.setItem("menu", JSON.stringify(menulist))
                 sessionStorage.setItem("carts", JSON.stringify(carts))
+                sessionStorage.setItem("products", JSON.stringify(products))
             } catch (error) {
                 console.log("登入失敗", error)
             }
@@ -39,19 +42,20 @@ export const useUserStore = defineStore('user', {
             this.username = ""
             this.menu = [];
             this.carts = [];
+            this.products = [];
             sessionStorage.clear()
         },
-        addProduct(product: string) {
-            const existingProduct = this.carts.find((item: any) => item === product);
-            if (existingProduct) {
+        addToCarts(cart: string) {
+            const existingCart = this.carts.find((item: any) => item === cart);
+            if (existingCart) {
                 return
             } else {
-                this.carts.push(product);
+                this.carts.push(cart);
             }
             sessionStorage.setItem("carts", JSON.stringify(this.carts))
         },
-        removeProduct(product: string) {
-            const index = this.carts.findIndex((item: any) => item === product);
+        removeCart(cart: string) {
+            const index = this.carts.findIndex((item: any) => item === cart);
             if (index !== -1) {
                 this.carts.splice(index, 1);
             }

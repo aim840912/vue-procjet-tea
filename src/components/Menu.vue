@@ -56,6 +56,15 @@
 			<span>新增產品</span>
 		</el-menu-item>
 		<el-menu-item
+			@click="add('manageproduct', '/manageproduct', 'location')"
+			index="/manageproduct"
+		>
+			<el-icon>
+				<document />
+			</el-icon>
+			<span>產品管理</span>
+		</el-menu-item>
+		<el-menu-item
 			@click="add('personal', '/personal', 'location')"
 			index="/personal"
 		>

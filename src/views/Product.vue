@@ -22,7 +22,7 @@
 			<el-col :span="6">
 				<el-input
 					placeholder="訂單金額"
-					v-model="searchParams.money"
+					v-model="searchParams.price"
 					type="number"
 				/>
 			</el-col>
@@ -30,18 +30,6 @@
 				<el-button type="primary" @click="loadData">查詢</el-button>
 				<el-button @click="handleReset">重置</el-button>
 			</el-col>
-
-			<!-- <el-col :span="6" class="mt">
-				<el-date-picker
-					v-model="date"
-					type="daterange"
-					range-separator="/"
-					start-placeholder="開始時間"
-					end-placeholder="結束時間"
-					@change="handleChange"
-					value-format="YYYY-MM-DD"
-				/>
-			</el-col> -->
 		</el-row>
 	</el-card>
 	<div class="cards" v-loading="loading">
@@ -58,7 +46,7 @@
 				<p class="info-label">{{ item.title }}</p>
 			</div>
 			<div class="div-price">
-				<p class="mt price">${{ item.money }}</p>
+				<p class="mt price">${{ item.price }}</p>
 			</div>
 			<div>
 				<p>category : {{ item.category }}</p>
@@ -89,16 +77,13 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-console.log("route.query.category", route.query.category);
 const category = ref<string>(route.query.category as string);
 
 category.value = category.value === undefined ? "" : category.value;
 
 const searchParams = ref<SearchType>({
 	orderNo: "",
-	startTime: "",
-	endTime: "",
-	money: 0,
+	price: 0,
 	category: category.value,
 	title: "",
 	content: "",
@@ -123,9 +108,7 @@ const handleReset = () => {
 	date.value = "";
 	searchParams.value = {
 		orderNo: "",
-		startTime: "",
-		endTime: "",
-		money: 0,
+		price: 0,
 		category: "",
 		title: "",
 		content: "",
@@ -134,10 +117,6 @@ const handleReset = () => {
 	resetPagination();
 };
 
-const handleChange = (val: string[]) => {
-	searchParams.value.startTime = val[0];
-	searchParams.value.endTime = val[1];
-};
 const handleClick = (orderNo: string) => {
 	router.push({
 		name: "detail",

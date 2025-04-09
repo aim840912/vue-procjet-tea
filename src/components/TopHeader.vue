@@ -80,7 +80,7 @@ const handleCommand = (command: string) => {
 const drawer = ref<boolean>(false);
 
 const deleteFromCart = (orderNo: string) => {
-	userStore.removeProduct(orderNo);
+	userStore.removeCart(orderNo);
 };
 </script>
 

@@ -114,7 +114,7 @@ const loadData = async () => {
 	}
 };
 const addToCart = (orderNo: string) => {
-	userStore.addProduct(orderNo);
+	userStore.addToCarts(orderNo);
 };
 
 const srcList = [

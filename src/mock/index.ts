@@ -38,6 +38,10 @@ const menulist = [
         name: "addproduct",
         url: "/addproduct",
         icon: "Document"
+    }, {
+        name: "manageproduct",
+        url: "/manageproduct",
+        icon: "Document"
     }
 ]
 const menulistforcustome = [
@@ -78,7 +82,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                 },
                 menulist,
                 carts: ["123", "456", "789"],
-                productList: ["111", "222", "333"],
+                products: ["111", "222", "333"],
             }
         }
     } else if (username === "custome" && password === "custome666") {
