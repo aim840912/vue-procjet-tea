@@ -75,6 +75,9 @@ import { type SelectionListType, type SearchType } from "@/types/product";
 import router from "@/router";
 import { useRoute } from "vue-router";
 
+import { useTabsStore } from "@/store/tabs.ts";
+const tabsStore = useTabsStore();
+const { addTab } = tabsStore;
 const route = useRoute();
 
 const category = ref<string>(route.query.category as string);
@@ -122,6 +125,8 @@ const handleClick = (orderNo: string) => {
 		name: "detail",
 		query: { orderNo },
 	});
+
+	addTab(orderNo, `/product/detail?orderNo=${orderNo}`, "Lightning");
 };
 </script>
 

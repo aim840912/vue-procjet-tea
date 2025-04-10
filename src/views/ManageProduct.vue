@@ -1,11 +1,11 @@
 <template>
 	<div class="cards">
 		<el-card class="mt card" v-for="item in products" :key="item" @click="">
-			<div>
-				<p class="info-label">{{ item }}</p>
+			<div class="card-image-container">
+				<p class="info-label">產品編號 : {{ item }}</p>
 			</div>
 
-			<div>
+			<div class="button-container mb">
 				<el-button
 					class="edit-button"
 					type="primary"
@@ -36,4 +36,13 @@ const userStore = useUserStore();
 const { products } = storeToRefs(userStore);
 </script>
 
-<style scoped></style>
+<style scoped>
+.card-image-container {
+	float: left;
+}
+.button-container {
+	float: right;
+
+	display: flex;
+}
+</style>

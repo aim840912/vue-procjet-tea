@@ -59,7 +59,7 @@ const fileList = ref<UploadUserFile[]>([]);
 
 onUpdated(() => {
 	formData.value.name = props.dataList.title;
-	formData.value.price = props.dataList.money;
+	formData.value.price = props.dataList.price;
 	formData.value.content = props.dataList.content;
 	formData.value.category = props.dataList.category;
 	formData.value.image = props.dataList.image;

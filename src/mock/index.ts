@@ -19,11 +19,11 @@ const menulist = [
         url: "/appearmap",
         icon: "MapLocation"
     },
-    {
-        name: "產品詳情",
-        url: "/product/detail",
-        icon: "Files",
-    },
+    // {
+    //     name: "產品詳情",
+    //     url: "/product/detail",
+    //     icon: "Files",
+    // },
     {
         name: "個人",
         url: "/personal",
@@ -85,7 +85,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                 products: ["111", "222", "333"],
             }
         }
-    } else if (username === "custome" && password === "custome666") {
+    } else if (username === "custome" && password === "custome") {
         return {
             code: 200,
             message: "登入成功",
@@ -93,7 +93,7 @@ Mock.mock("https://www.demo.com/login", "post", (options: any) => {
                 token: "usertokenkkljbuo2w9xla2",
                 user: {
                     username: "遊客",
-                    roles: ["user"]
+                    roles: ["custome"]
                 },
                 menulist: menulistforcustome,
                 carts: ["123"]
@@ -175,9 +175,6 @@ Mock.mock('https://www.demo.com/product/detail', "post", (options: any) => {
         message: "成功",
         data: Mock.mock({
             'orderNo': `${orderNo}`,
-            'date': '@date("yyyy-MM-dd")',
-            'startTime': '08:00:23',
-            'endTime': '09:10:11',
             'price|1': [100, 200, 300],
             'category|1': ["茶類", "咖啡類", "果園"],
             'title|1': ["綠茶包", "綠茶葉", "綠茶禮盒", "紅茶包", "紅茶葉", "紅茶禮盒", "咖啡豆", "咖啡包", "紅肉李"],

@@ -4,7 +4,7 @@
 			<p>豪德</p>
 		</div>
 		<div class="personal" @click="drawer = true">
-			<el-badge :is-dot="info > 0" class="item">
+			<el-badge :is-dot="info" class="item">
 				<el-icon><ShoppingCart /></el-icon>
 			</el-badge>
 			<el-avatar
@@ -55,18 +55,11 @@ import { Delete } from "@element-plus/icons-vue";
 const router = useRouter();
 const userStore = useUserStore();
 const { username, carts } = storeToRefs(userStore);
-const info = ref(carts.value);
+const info = ref(carts.value.length > 0);
 
-watch(
-	() => info.value,
-	(newVal) => {
-		if (newVal.length > 0) {
-			info.value = newVal.length;
-		} else {
-			info.value = 0;
-		}
-	}
-);
+watch(carts.value, (newVal) => {
+	info.value = newVal.length > 0;
+});
 
 const handleCommand = (command: string) => {
 	if (command == "user") {

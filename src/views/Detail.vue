@@ -35,7 +35,7 @@
 				<div>
 					<h1 class="title mt mb ml">{{ dataList.title }}</h1>
 				</div>
-				<p class="price ml">$ {{ dataList.money }}</p>
+				<p class="price ml">$ {{ dataList.price }}</p>
 				<div class="content mt ml">
 					<p>
 						{{ dataList.content }}
@@ -87,13 +87,12 @@ const props = defineProps(["orderNo"]);
 
 onMounted(() => {
 	loadData();
-	console.log("orderNo", props.orderNo);
 });
 
 const loading = ref<boolean>(false);
 const dataList = ref({
 	orderNo: "",
-	money: 0,
+	price: 0,
 	category: "",
 	title: "",
 	content: "",

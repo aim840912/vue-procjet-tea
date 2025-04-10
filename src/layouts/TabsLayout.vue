@@ -59,16 +59,13 @@ function findObjectByUrl(arr: any[], url: string) {
 		if (item.url === url) {
 			return item;
 		}
-		if (item.children) {
-			const found: any = findObjectByUrl(item.children, url);
-			if (found) {
-				return found;
-			}
-		}
 	}
 	return null;
 }
-const { name, url, icon } = findObjectByUrl(menu.value, route.path);
+const { name, url, icon } =
+	findObjectByUrl(menu.value, route.path) == null
+		? { name: "所有產品", url: "/product/all", icon: "Lightning" }
+		: findObjectByUrl(menu.value, route.path);
 addTab(name, url, icon);
 setCurrentTab(name, url);
 

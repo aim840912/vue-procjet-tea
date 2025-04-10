@@ -8,36 +8,33 @@
 			</template>
 			<el-row :gutter="20">
 				<el-col :span="16">
-					<el-form @handle-submit="handleSubmit">
+					<el-form>
 						<el-form :model="formData" ref="form1">
 							<el-form-item label="名稱">
-								<el-input v-model="formData.name" />
+								<el-input v-model="formData.title" />
 							</el-form-item>
 							<el-form-item label="價格">
 								<el-input v-model="formData.price" />
 							</el-form-item>
-							<el-form-item label="數量">
-								<el-input v-model="formData.count" />
-							</el-form-item>
 						</el-form>
 						<el-form-item label="介紹">
-							<el-input type="textarea" />
+							<el-input
+								v-model="formData.content"
+								type="textarea"
+							/>
 						</el-form-item>
-						<el-form :model="formData.category" ref="form2">
-							<el-select
-								placeholder="選擇分類"
-								v-model="formData.category"
-							>
-								<el-option label="茶類" value="茶類">
-								</el-option>
-								<el-option label="咖啡類" value="咖啡類">
-								</el-option>
-								<el-option label="水果類" value="水果類">
-								</el-option>
-								<el-option label="觀光" value="觀光">
-								</el-option>
-							</el-select>
-						</el-form>
+
+						<el-select
+							placeholder="選擇分類"
+							v-model="formData.category"
+						>
+							<el-option label="茶類" value="茶類"> </el-option>
+							<el-option label="咖啡類" value="咖啡類">
+							</el-option>
+							<el-option label="水果類" value="水果類">
+							</el-option>
+							<el-option label="觀光" value="觀光"> </el-option>
+						</el-select>
 					</el-form>
 				</el-col>
 				<el-col :span="8">
@@ -71,6 +68,13 @@
 					</div>
 				</el-col>
 			</el-row>
+			<el-button
+				class="submitBtn mb"
+				type="primary"
+				@click="handleSubmit"
+			>
+				確認
+			</el-button>
 		</el-card>
 	</el-col>
 </template>
@@ -82,10 +86,10 @@ import { type FormInstance } from "element-plus";
 const form1 = ref<FormInstance>();
 const form2 = ref<FormInstance>();
 const formData = ref({
-	name: "",
+	title: "",
 	price: "",
-	count: "",
-	category: "",
+	category: "茶類",
+	content: "",
 });
 const handleSubmit = () => {
 	console.log("表單數據", formData.value);
@@ -128,5 +132,9 @@ const removeImage = (index: number) => {
 	opacity: 0.5;
 
 	transform: scale(0.8);
+}
+
+.submitBtn {
+	float: right;
 }
 </style>
