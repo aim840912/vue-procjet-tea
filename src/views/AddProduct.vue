@@ -84,7 +84,6 @@ import { ref } from "vue";
 import { type FormInstance } from "element-plus";
 
 const form1 = ref<FormInstance>();
-const form2 = ref<FormInstance>();
 const formData = ref({
 	title: "",
 	price: "",
