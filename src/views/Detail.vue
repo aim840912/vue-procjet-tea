@@ -87,6 +87,7 @@ const props = defineProps(["orderNo"]);
 
 onMounted(() => {
 	loadData();
+	console.log("orderNo", props.orderNo);
 });
 
 const loading = ref<boolean>(false);
@@ -106,8 +107,6 @@ const loadData = async () => {
 		});
 		data.image.push(...srcList);
 		dataList.value = data;
-
-		console.log("datalist", dataList.value);
 	} catch (error) {
 	} finally {
 		loading.value = false;

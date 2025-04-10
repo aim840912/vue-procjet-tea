@@ -21,8 +21,14 @@ const routes: RouteRecordRaw[] = [
 
             },
             {
-                path: "/product",
-                name: "product",
+                path: "/product/detail",
+                name: "detail",
+                component: () => import("@/views/Detail.vue"),
+                props(route) { return route.query }
+            },
+            {
+                path: "/product/all",
+                name: "allproduct",
                 component: () => import("@/views/Product.vue"),
                 props(route) { return route.query },
                 meta: { keepAlive: true }
@@ -36,12 +42,6 @@ const routes: RouteRecordRaw[] = [
                 path: "/manageproduct",
                 name: "manageproduct",
                 component: () => import("@/views/ManageProduct.vue"),
-            },
-            {
-                path: "/product/detail",
-                name: "detail",
-                component: () => import("@/views/Detail.vue"),
-                props(route) { return route.query }
             },
             {
                 path: "/appearmap",

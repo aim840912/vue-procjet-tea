@@ -16,6 +16,11 @@
 		v-else
 		:index="item.url"
 		@click="add(item.name, item.url, item.icon)"
+		active-text-color="#ffd04b"
+		class="el-menu-vertical-demo"
+		default-active="1"
+		:router="true"
+		v-show="!(item.name == '產品詳情' || item.name == '產品管理')"
 	>
 		<el-icon>
 			<component :is="item.icon"></component>
@@ -50,7 +55,7 @@ export default defineComponent({
 
 <style scoped lang="less">
 .is-active {
-	background-color: rgb(34, 136, 255);
+	background-color: rgb(123, 233, 80);
 	color: #fff !important;
 	div {
 		span {
@@ -59,11 +64,11 @@ export default defineComponent({
 	}
 }
 .el-menu-item:hover {
-	background-color: rgb(34, 136, 255) !important;
+	background-color: rgb(76, 172, 38) !important;
 	color: #fff !important ;
 }
 ::v-deep .el-sub-menu__title:hover {
-	background-color: rgb(34, 136, 255) !important;
+	background-color: rgb(76, 172, 38) !important;
 	color: #fff !important ;
 }
 </style>

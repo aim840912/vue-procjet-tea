@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
 import type { FormRules, FormInstance } from "element-plus";
-import { useUserStore } from "@/store/auth";
+
 import { useRouter } from "vue-router";
 interface RuleForm {
 	username: string;
@@ -50,7 +50,6 @@ const rules = reactive<FormRules<RuleForm>>({
 	],
 });
 
-const userStore = useUserStore();
 const formRef = ref<FormInstance>();
 const router = useRouter();
 

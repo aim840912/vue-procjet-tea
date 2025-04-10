@@ -1,7 +1,7 @@
 import router from "./index";
 import { useUserStore } from "../store/auth";
 
-router.beforeEach((to, from) => {
+router.beforeEach((to) => {
     const userStore = useUserStore();
     const isLogin = userStore.token;
 

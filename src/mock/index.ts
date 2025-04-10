@@ -5,41 +5,41 @@ Mock.setup({
 })
 const menulist = [
     {
-        name: "dashboard",
+        name: "首頁",
         url: "/dashboard",
         icon: "DataLine"
     },
     {
-        name: "product",
-        url: "/product",
+        name: "所有產品",
+        url: "/product/all",
         icon: "Lightning",
     },
     {
-        name: "appearmap",
+        name: "位置",
         url: "/appearmap",
         icon: "MapLocation"
     },
     {
-        name: "detail",
+        name: "產品詳情",
         url: "/product/detail",
         icon: "Files",
     },
     {
-        name: "personal",
+        name: "個人",
         url: "/personal",
         icon: "Phone"
     },
     {
-        name: "edit",
+        name: "產品管理",
         url: "/product/edit",
         icon: "Magnet"
     },
     {
-        name: "addproduct",
+        name: "新增產品",
         url: "/addproduct",
         icon: "Document"
     }, {
-        name: "manageproduct",
+        name: "管理產品",
         url: "/manageproduct",
         icon: "Document"
     }
@@ -117,7 +117,7 @@ Mock.mock("https://www.demo.com/product/edit", 'post', (options: any) => {
         success: true,
         data: {
             orderNo: res.orderNo,
-            money: 100,
+            price: 100,
             category: "茶類",
             title: "綠茶包",
             content: "這是綠茶包的內容",
@@ -136,9 +136,8 @@ Mock.mock("https://www.demo.com/product/delete", "post", (options: any) => {
 })
 
 Mock.mock('https://www.demo.com/product', "post", (options: any) => {
-    const { pageSize, title, category, money } = JSON.parse(options.body);
+    const { pageSize, title, category, price } = JSON.parse(options.body);
 
-    console.log("產品列表接口收到參數", JSON.parse(options.body))
     return {
         code: 200,
         message: "成功",
@@ -148,7 +147,7 @@ Mock.mock('https://www.demo.com/product', "post", (options: any) => {
                 'date': '@date("yyyy-MM-dd")',
                 'startTime': '08:00:23',
                 'endTime': '09:10:11',
-                'money|1': function () { return money != 0 ? specificPriceList(money)[Math.floor(Math.random() * specificPriceList(money).length)] : moneyList[Math.floor(Math.random() * moneyList.length)]; },
+                'price|1': function () { return price != 0 ? specificPriceList(price)[Math.floor(Math.random() * specificPriceList(price).length)] : priceList[Math.floor(Math.random() * priceList.length)]; },
                 'category': function () { return category != "" ? category : categoryList[Math.floor(Math.random() * categoryList.length)]; },
                 'title|1': function () { return title != "" ? specificList(title)[Math.floor(Math.random() * specificList(title).length)] : productList[Math.floor(Math.random() * productList.length)]; },
                 'content|1': ["這是綠茶茶包的內容", "這是綠茶茶葉的內容", "這是綠茶禮盒的內容", "這是紅茶茶包的內容", "這是紅茶茶葉的內容", "這是紅茶禮盒的內容", "這是咖啡豆的內容", "這是咖啡包的內容", "這是紅肉李的內容"],
@@ -160,11 +159,11 @@ Mock.mock('https://www.demo.com/product', "post", (options: any) => {
 })
 
 const productList = ["綠茶包", "綠茶葉", "綠茶禮盒", "紅茶包", "紅茶葉", "紅茶禮盒", "咖啡豆", "咖啡包", "紅肉李"];
-const moneyList = [100, 200, 300];
+const priceList = [100, 200, 300];
 const categoryList = ["茶類", "咖啡類", "果園"];
 
 const specificList = (specificItem: string) => productList.filter((word) => word.includes(specificItem));
-const specificPriceList = (specificItem: number) => moneyList.filter((word) => word >= specificItem);
+const specificPriceList = (specificItem: number) => priceList.filter((word) => word >= specificItem);
 
 
 
@@ -179,7 +178,7 @@ Mock.mock('https://www.demo.com/product/detail', "post", (options: any) => {
             'date': '@date("yyyy-MM-dd")',
             'startTime': '08:00:23',
             'endTime': '09:10:11',
-            'money|1': [100, 200, 300],
+            'price|1': [100, 200, 300],
             'category|1': ["茶類", "咖啡類", "果園"],
             'title|1': ["綠茶包", "綠茶葉", "綠茶禮盒", "紅茶包", "紅茶葉", "紅茶禮盒", "咖啡豆", "咖啡包", "紅肉李"],
             'content|1': ["這是綠茶茶包的內容", "這是綠茶茶葉的內容", "這是綠茶禮盒的內容", "這是紅茶茶包的內容", "這是紅茶茶葉的內容", "這是紅茶禮盒的內容", "這是咖啡豆的內容", "這是咖啡包的內容", "這是紅肉李的內容"],
