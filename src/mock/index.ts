@@ -19,11 +19,6 @@ const menulist = [
         url: "/appearmap",
         icon: "MapLocation"
     },
-    // {
-    //     name: "產品詳情",
-    //     url: "/product/detail",
-    //     icon: "Files",
-    // },
     {
         name: "個人",
         url: "/personal",
