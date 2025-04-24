@@ -1,3 +1,7 @@
+# 項目介紹
+
+使用 Vue3, Vue Router, Pinia, TypeScript, element plus, axios 開發
+利用 mockjs 模擬後端數據，實現前後端對接
 
 # 項目重點
 點選可直接到該程式碼
